@@ -1,0 +1,216 @@
+\documentclass[12pt,oneside]{report}
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}		% Einstellungen fuer Umlaute usw.
+\usepackage[utf8]{inputenc}
+\usepackage[autostyle]{csquotes}
+\usepackage[backend = biber, style = apa]{biblatex}
+\DeclareLanguageMapping{german}{german-apa}
+
+\addbibresource{bibliography.bib}
+
+\usepackage{parskip}			% Einstellungen fuer Absaetze: Abstand statt Einrueckung
+
+\usepackage[a4paper,			% Papierformat A4
+	    left=2.5cm,				% linker Rand
+	    right=2.5cm,			% rechter Rand
+	    top=1.5cm,				% oberer Rand
+	    bottom=1.5cm,			% unter Rand
+	    marginparsep=5mm,		% Abstand der Randnotizen
+	    marginparwidth=10mm, 	% Breite der Randnotizen
+	    headheight=7mm,			% Hoehe der Kopfzeile
+	    headsep=1.2cm,			% Abstand der Kopfzeile
+	    footskip=1.5cm,			% Abstand der Fusszeile
+	    includeheadfoot]{geometry}
+
+\usepackage{fancyhdr}						% Konfiguration von Kopf- und Fusszeilen
+\pagestyle{fancy}							% Seitenstil 'fancy'
+\fancyhf{}									% vorhandene Einstellungen loeschen
+\setlength{\headwidth}{\textwidth}			% Kopf- und Fusszeile so breit wie der Haupttext
+\fancyfoot[R]{\thepage} 					% Festlegung des Seitenstils: Seitenzahlen in der Fusszeile rechts
+\fancyfoot[L]{\leftmark}					% Kapitelnr. und -Bezeichnung in der Fusszeile links
+\fancyhead[R]{\IhreArbeit}					% "Bachelorarbeit" in der Kopfzeile rechts
+\fancyhead[L]{\IhrVorname\ \IhrNachname}	% Vorname und Name in der Kopfzeile links
+\renewcommand{\chaptermark}[1]{			% Definition der Ausgabe des Kapitels
+  \markboth{Kapitel \thechapter. #1}{}}
+\renewcommand{\headrulewidth}{0.5pt}		% Trennlinie zwischen Kopfzeile und Haupttext
+\renewcommand{\footrulewidth}{0.5pt}		% Trennlinie zwischen Haupttext und Fusszeile
+\fancypagestyle{plain}{					% Anpassung des Seitenstils 'plain' bei Beginn neuer Kapitel
+  \fancyhf{}								% Vorbelegung loeschen
+  \fancyfoot[C]{\thepage}					% Seitenzeilen in der Fusszeile mittig
+  \fancyhead[R]{\IhreArbeit}				% "Bachelorarbeit" in der Kopfzeile rechts
+  \fancyhead[L]{\IhrVorname\ \IhrNachname}	% Vorname und Name in der Kopfzeile links
+}
+
+\usepackage{amsmath}			% Pakete fuer den Mathematikmodus
+\usepackage{amssymb}
+\usepackage{tocloft}
+\usepackage[intlimits]{empheq}
+\usepackage{array}
+
+\usepackage[sc]{mathpazo}		% Schriftart Palatino fuer Haupttext und Mathematikmodus
+\usepackage{pifont}				% zusaetzliche Symbole
+
+\usepackage[format=hang,		% Einstellung fuer Bildunterschriften
+            font={footnotesize},
+            labelfont={bf},
+            margin=1cm,
+            aboveskip=5pt,
+            position=bottom]{caption}
+\usepackage{float}
+
+\usepackage{graphicx}							% Einbinden von Graphiken
+\usepackage[svgnames,table,hyperref, xcdraw]{xcolor} 	% Verwendung von Farben
+\usepackage{tabularx}
+
+\usepackage{tablefootnote}
+\usepackage{tikz}								% Erstellen von Grafiken
+\usetikzlibrary{positioning,arrows,plotmarks} % TikZ-Bibliotheken
+\usepackage[export]{adjustbox}
+%\usepackage{pgfplots}                           % Darstellung von Plots, Funktionen, Graphen usw.
+
+%
+% Weitere Pakete
+%
+\definecolor{light-gray}{gray}{0.95}
+\usepackage{listings}			% Darstellung von Quellcode
+\lstset{
+	basicstyle=\ttfamily, 
+	numbers=left, 
+	keywordstyle=\color{blue},
+	commentstyle=\color{ForestGreen},
+	stringstyle=\color{orange},
+	showstringspaces=false,
+	linewidth=1\textwidth,
+	frame=l, %t: top, r, b, l 
+	backgroundcolor=\color{light-gray},
+	tabsize=2 
+}
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {ã}{{\~a}}1 {ẽ}{{\~e}}1 {ĩ}{{\~i}}1 {õ}{{\~o}}1 {ũ}{{\~u}}1
+  {Ã}{{\~A}}1 {Ẽ}{{\~E}}1 {Ĩ}{{\~I}}1 {Õ}{{\~O}}1 {Ũ}{{\~U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+  {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 {¡}{{!`}}1
+  {°}{{\textdegree}}1 
+}
+%
+\usepackage{siunitx}
+%\usepackage[european, siunitx]{circuitikz}	% Darstellung von Schaltungen
+%
+%\usepackage{enumerate}			% Formatierung nummerierter Listen
+
+\usepackage{microtype,relsize}					% Wird verwendet, um Nachnamen auf Titelseite gesperrt darzustellen
+\newcommand*{\Sperren}[1]{\textls*[100]{#1}}
+
+\usepackage{acronym}
+
+
+% 
+% Persoenliche Angaben
+% 
+\newcommand*{\IhrVorname}{Helge}
+\newcommand*{\IhrNachname}{Kohl}
+\newcommand*{\IhrStudiengang}{Master Künstliche Intelligenz}
+\newcommand*{\IhreArbeit}{Studienarbeit}
+\newcommand*{\IhrTitelDE}{Deep Vision}
+\newcommand*{\IhrTitelEN}{
+Medical Segmentation: nnUNet vs ResSegNet
+}
+%\newcommand*{\IhrBearbeitungszeitraumVON}{28. Mai 2021}
+%\newcommand*{\IhrBearbeitungszeitraumBIS}{27. Oktober 2021}
+%\newcommand*{\IhrErstpruefer}{Prof. Dr. Dieter Meiller}
+%\newcommand*{\IhrZweitpruefer}{Veit Stephan M. Eng.}
+%\newcommand*{\IhreZusammenfassung}{} 
+\newcommand*{\IhreSchluesselwoerter}{Benachrichtigungssystem, Sensoren, Raumluftqualität, Machine-Learning}
+
+\newenvironment{conditions}
+  {\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
+  {\end{tabular}\par\vspace{\belowdisplayskip}}
+
+\newcommand{\autorefk}[1]{\textit{\autoref{#1}}}
+
+\newcommand{\listequationsname}{Formelverzeichnis}
+\newlistof{myequations}{equ}{\listequationsname}
+\newcommand{\myequations}[1]{%
+\addcontentsline{equ}{myequations}{\protect\hspace*{3ex}\numberline{\theequation}#1}\par}
+\addtolength{\cftmyequationsnumwidth}{10pt}
+
+
+\usepackage[bookmarks, raiselinks, pageanchor, % PDF-Einstellungen
+            hyperindex, colorlinks, breaklinks,
+            citecolor=black, linkcolor=black,
+            urlcolor=black, filecolor=black,
+            menucolor=black]{hyperref}
+\usepackage{breakurl}
+\hypersetup{pdftitle={\IhrTitelDE},%
+            pdfauthor={\IhrVorname\ \IhrNachname},%
+            pdfsubject={\IhreArbeit},%
+            pdfkeywords={\IhreSchluesselwoerter}}
+
+%
+% Beginn des Textteils
+%
+\begin{document}
+  \pagenumbering{roman}
+  \begin{titlepage}					% Titelseite
+    \thispagestyle{empty}
+    \begin{center}
+      \Large
+      Ostbayerische Technische Hochschule Amberg-Weiden\\
+      Fakultät Elektrotechnik, Medien und Informatik\\[1cm]
+      Studiengang \IhrStudiengang\\[1cm]
+      
+      \textbf{\IhreArbeit}\\[1cm]
+      von\\[1cm]
+      \IhrVorname\ \Sperren{\textbf{\IhrNachname}}\\[1cm]
+      \textbf{\IhrTitelDE}\\[1cm]
+      \IhrTitelEN
+    \end{center}
+  \end{titlepage}
+  \pdfbookmark[1]{Inhaltsverzeichnis}{toc}
+  \tableofcontents
+  \newpage
+  \phantomsection
+  %\addcontentsline{toc}{chapter}{Abkürzungs- und Begriffsverzeichnis}
+  %\include{abkürzungsverzeichnis}
+  %\phantomsection
+  \addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+  \listoffigures
+  \newpage
+  \phantomsection
+  %\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+  %\listoftables
+  %\newpage
+  %\phantomsection
+  %\addcontentsline{toc}{chapter}{Listings}
+  %\lstlistoflistings
+  %\phantomsection
+  %\addcontentsline{toc}{chapter}{Formelverzeichnis}
+  %\listofmyequations
+  %\newpage
+  \pagenumbering{arabic}
+  \include{einleitung}
+  \include{materials}
+  \include{methoden}
+  \include{results}
+  
+  % ... weitere Kapitel
+ 
+  % Literaturverzeichnis
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Literaturverzeichnis}
+    \printbibliography
+  \newpage
+  
+  %\include{anhang}
+\end{document}    
